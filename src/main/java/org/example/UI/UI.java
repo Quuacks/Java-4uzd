@@ -28,48 +28,17 @@ public class UI extends Application {
     public void start(Stage stage) {
         TabPane tabPane = new TabPane();
 
-        UI_Tab studentTab = new studentTab("student tab");
+        UI_Tab studentTab = new studentTab("Students");
+        UI_Tab groupTab = new groupsTab("Groups");
+        UI_Tab attendenceTab = new attendenceTab("Attendance");
+        UI_Tab reportsTab = new reportsTab("Reports");
 
-        Tab groupsTab = new Tab("Groups", createGroupsPane());
-        Tab attendanceTab = new Tab("Attendance", createAttendancePane());
-        Tab reportsTab = new Tab("Reports", createReportsPane());
-
-        tabPane.getTabs().addAll(studentTab.createTab(), groupsTab, attendanceTab, reportsTab);
+        tabPane.getTabs().addAll(studentTab.createTab(), groupTab.createTab(), attendenceTab.createTab(), reportsTab.createTab());
 
         Scene scene = new Scene(tabPane, 800, 600);
         stage.setTitle("Student Registration System");
         stage.setScene(scene);
         stage.show();
-    }
-
-    private VBox createGroupsPane() {
-        TextField groupName = new TextField();
-        groupName.setPromptText("Group name");
-
-        Button createBtn = new Button("Create Group");
-
-        VBox layout = new VBox(10, groupName, createBtn);
-        layout.setPadding(new Insets(10));
-        return layout;
-    }
-
-    private VBox createAttendancePane() {
-        DatePicker datePicker = new DatePicker();
-        Button markBtn = new Button("Mark Attendance");
-
-        VBox layout = new VBox(10, datePicker, markBtn);
-        layout.setPadding(new Insets(10));
-        return layout;
-    }
-
-    private VBox createReportsPane() {
-        DatePicker fromDate = new DatePicker();
-        DatePicker toDate = new DatePicker();
-        Button generateBtn = new Button("Generate PDF");
-
-        VBox layout = new VBox(10, fromDate, toDate, generateBtn);
-        layout.setPadding(new Insets(10));
-        return layout;
     }
 
     public static void launchApp(){
