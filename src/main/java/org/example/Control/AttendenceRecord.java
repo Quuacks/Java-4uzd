@@ -5,11 +5,9 @@ import java.time.LocalDate;
 public class AttendenceRecord {
     boolean didAttend;
     LocalDate date;
-    Student student;
 
-    public AttendenceRecord(boolean didAttend, LocalDate date, Student student){
+    public AttendenceRecord(boolean didAttend, LocalDate date){
         this.didAttend = didAttend;
         this.date = date;
-        this.student = student;
     }
 }
