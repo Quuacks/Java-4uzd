@@ -16,13 +16,16 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.example.Control.Student;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 
 public class UI extends Application {
 
     private ObservableList<Student> students = FXCollections.observableArrayList();
+    private final Map<LocalDate, Set<Integer>> attendanceData = new HashMap<>();
 
     @Override
     public void start(Stage stage) {
@@ -30,8 +33,8 @@ public class UI extends Application {
 
         UI_Tab studentTab = new studentTab("Students", students);
         UI_Tab groupTab = new groupsTab("Groups", students);
-        UI_Tab attendenceTab = new attendenceTab("Attendance", students);
-        UI_Tab reportsTab = new reportsTab("Reports");
+        UI_Tab attendenceTab = new attendenceTab("Attendance", students, attendanceData);
+        UI_Tab reportsTab = new reportsTab("Reports", students, attendanceData);
 
         tabPane.getTabs().addAll(studentTab.createTab(), groupTab.createTab(), attendenceTab.createTab(), reportsTab.createTab());
 

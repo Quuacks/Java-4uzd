@@ -11,14 +11,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.Control.Student;
-import org.w3c.dom.Text;
+import org.example.Service.AttendanceIOHelper;
 
 public class studentTab extends UI_Tab{
 
     private TableView<Student> studentTable = new TableView<>();
     private ObservableList<Student> students;
-
-    int nextID = 0;
 
     @Override
     Tab createTab(){
@@ -31,7 +29,7 @@ public class studentTab extends UI_Tab{
         surnameField.setPromptText("Surname");
 
         Button addButton = new Button("Add Student");
-        addButton.setOnAction(e -> createStudent(nameField.getText(), surnameField.getText(), ++nextID));
+        addButton.setOnAction(e -> createStudent(nameField.getText(), surnameField.getText()));
 
         HBox form = new HBox(10, nameField, surnameField, addButton);
 
@@ -121,7 +119,8 @@ public class studentTab extends UI_Tab{
         popup.close();
     }
 
-    void createStudent(String name, String surname, int id){
+    void createStudent(String name, String surname){
+        int id = AttendanceIOHelper.nextStudentId(students);
         Student newStudent = new Student(id, name, surname);
         students.add(newStudent);
         studentTable.setItems(students);

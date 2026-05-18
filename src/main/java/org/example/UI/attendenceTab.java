@@ -11,7 +11,6 @@ import javafx.scene.layout.VBox;
 import org.example.Control.Student;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -21,7 +20,7 @@ public class attendenceTab extends UI_Tab{
     private TableView<Student> attendenceTableView = new TableView<>();
     private DatePicker datePicker = new DatePicker();
 
-    private Map<LocalDate, Set<Integer>> attendenceData = new HashMap<>();
+    private final Map<LocalDate, Set<Integer>> attendenceData;
 
     @Override
     Tab createTab() {
@@ -75,8 +74,9 @@ public class attendenceTab extends UI_Tab{
         attendenceTableView.refresh();
     }
 
-    public attendenceTab(String name, ObservableList<Student> students){
+    public attendenceTab(String name, ObservableList<Student> students, Map<LocalDate, Set<Integer>> attendenceData){
         super(name);
         this.allStudents = students;
+        this.attendenceData = attendenceData;
     }
 }
